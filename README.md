@@ -41,14 +41,14 @@ $$
 
 There are three free variables ($`x_0`$, $`z_0`$, $`\dot{y}_0`$) and two constraints ($`\dot{x}_{T/2}`$, $`\dot{z}_{T/2}`$), so we fix one variable and let the other two be adjusted by the differential correction algorithm. I chose $z_0$ as the fixed variable. We can then set up the correction matrix $M$ which essentially maps variations in the initial conditions $x_0$ and $y_0$ to the final state $`\dot{x}_{T/2}`$ and $`\dot{z}_{T/2}`$. 
 
-$$
+```math
 M = \begin{bmatrix}
 \Phi_{41} - \dfrac{\ddot{x}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{21} & \Phi_{45} - \dfrac{\ddot{x}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{25} \\[2ex]
 \Phi_{61} - \dfrac{\ddot{z}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{21} & \Phi_{65} - \dfrac{\ddot{z}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{25}
 \end{bmatrix}
 \qquad
 \begin{bmatrix} \delta\dot{x}_{T/2} \\ \delta\dot{z}_{T/2} \end{bmatrix} = M \begin{bmatrix} \delta z_0 \\ \delta\dot{y}_0 \end{bmatrix}
-$$
+```
 
 The final constraint variables should be driven to 0, so we employ Newton's method with 
 
@@ -79,11 +79,7 @@ For a periodic orbit, there's a pair of eigenvalues both equal to 1 correspondin
 
 ## Halo Orbit Results
 
-*Figure 1* shows the results of differential correction successfully improving initial conditions that started off providing orbits that would rapidly decay without periodicity. Another approach I took used Differential Evolution, a population based optimization algorithm designed to search a solution space to minimize an objective function J, in this case 
-
-$J = \dot{x}_{T/2}^2 + \dot{z}_{T/2}^2$
-
-It worked fairly well as a point of comparison but is a worse option for finding orbits.
+*Figure 1* shows the results of differential correction successfully improving initial conditions that started off providing orbits that would rapidly decay without periodicity. Another approach I took used Differential Evolution, a population based optimization algorithm designed to search a solution space to minimize an objective function J, in this case $`J = \dot{x}_{T/2}^2 + \dot{z}_{T/2}^2`$. It worked fairly well as a point of comparison but is a worse option for finding orbits.
 
 <figure>
     <img src='results/DCresults.png' width='80%'>
