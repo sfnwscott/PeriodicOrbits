@@ -39,7 +39,7 @@ $$
 \delta\mathbf{x}(t) = \Phi(t,t_0)\,\delta\mathbf{x}_0
 $$
 
-There are three free variables ($x_0$, $z_0$, $\dot{y}_0$) and two constraints ($\dot{x}_{T/2}$, $\dot{z}_{T/2}$), so we fix one variable and let the other two be adjusted by the differential correction algorithm. I chose $z_0$ as the fixed variable. We can then set up the correction matrix $M$ which essentially maps variations in the initial conditions $x_0$ and $y_0$ to the final state $\dot{x}_{T/2}$ and $\dot{z}_{T/2}$. 
+There are three free variables ($`x_0`$, $`z_0`$, $`\dot{y}_0`$) and two constraints ($`\dot{x}_{T/2}`$, $`\dot{z}_{T/2}`$), so we fix one variable and let the other two be adjusted by the differential correction algorithm. I chose $z_0$ as the fixed variable. We can then set up the correction matrix $M$ which essentially maps variations in the initial conditions $x_0$ and $y_0$ to the final state $`\dot{x}_{T/2}`$ and $`\dot{z}_{T/2}`$. 
 
 $$
 M = \begin{bmatrix}
