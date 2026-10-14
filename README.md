@@ -42,23 +42,25 @@ $$
 There are three free variables ($x_0$, $z_0$, $\dot{y}_0$) and two constraints ($\dot{x}_{T/2}$, $\dot{z}_{T/2}$), so we fix one variable and let the other two be adjusted by the differential correction algorithm. I chose $z_0$ as the fixed variable. We can then set up the correction matrix $M$ which essentially maps variations in the initial conditions $x_0$ and $y_0$ to the final state $\dot{x}_{T/2}$ and $\dot{z}_{T/2}$. 
 
 $$
-M =
-\begin{bmatrix}
+M = \begin{bmatrix}
 \Phi_{41} - \dfrac{\ddot{x}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{21} & \Phi_{45} - \dfrac{\ddot{x}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{25} \\[2ex]
 \Phi_{61} - \dfrac{\ddot{z}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{21} & \Phi_{65} - \dfrac{\ddot{z}_{T/2}}{\dot{y}_{T/2}}\,\Phi_{25}
 \end{bmatrix}
-\quad
-\begin{bmatrix} \delta\dot{x}_{T/2} \\ \delta\dot{z}_{T/2} \end{bmatrix}
-=
-M
-\begin{bmatrix} \delta z_0 \\ \delta\dot{y}_0 \end{bmatrix}
+\qquad
+\begin{bmatrix} \delta\dot{x}_{T/2} \\ \delta\dot{z}_{T/2} \end{bmatrix} = M \begin{bmatrix} \delta z_0 \\ \delta\dot{y}_0 \end{bmatrix}
 $$
 
-The final constraint variables should be driven to 0, so we employ Newton's method with $\delta \dot{x}_{T/2} = -\dot{x}_{T/2}$ and $\delta \dot{z}_{T/2} = -\dot{z}_{T/2}$. To obtain a solution closer to these constraints, the periodic orbit, we invert the matrix and repeat the process until the updating variables fall below a small tolerance.
+The final constraint variables should be driven to 0, so we employ Newton's method with 
+
+$$
+\delta \dot{x}_{T/2} = -\dot{x}_{T/2} \qquad \delta \dot{z}_{T/2} = -\dot{z}_{T/2}
+$$ 
+
+To obtain a solution closer to these constraints, the periodic orbit, we invert the matrix and repeat the process until the updating variables fall below a small tolerance.
 
 $$
 \begin{bmatrix} \delta x_0 \\ \delta\dot{y}_0 \end{bmatrix}
-= -\,M^{-1}
+= -M^{-1}
 \begin{bmatrix} \dot{x}_{T/2} \\ \dot{z}_{T/2} \end{bmatrix}
 $$
 
@@ -77,16 +79,22 @@ For a periodic orbit, there's a pair of eigenvalues both equal to 1 correspondin
 
 ## Halo Orbit Results
 
-*Figure 1* shows the results of differential correction successfully improving initial conditions that started off providing orbits that would rapidly decay without periodicity. Another approach I took used Differential Evolution, a population based optimization algorithm designed to search a solution space to minimize an objective function, in this case $\dot{x}_{T/2}^2 + \dot{z}_{T/2}^2$. It also worked fairly well as a point of comparison but is a worse option for finding orbits.
+*Figure 1* shows the results of differential correction successfully improving initial conditions that started off providing orbits that would rapidly decay without periodicity. Another approach I took used Differential Evolution, a population based optimization algorithm designed to search a solution space to minimize an objective function J, in this case 
 
+$J = \dot{x}_{T/2}^2 + \dot{z}_{T/2}^2$
+
+It worked fairly well as a point of comparison but is a worse option for finding orbits.
 
 <figure>
     <img src='results/DCresults.png' width='80%'>
     <figcaption>Figure 1: Differential correction algorithm converging visually in 4 iterations. Longer term stability is found by repeated correction</figcaption>
 </figure>
 
-As is seen in *Figure 2* the stability of the halo is better when less tightly orbiting L2. For reference, a lower stability index signifies a more stable orbit. Only orbits with the largest out of plane $z$ components had stabilities sufficient for a space telescope with its limited $\Delta v$ budget.
+
+As seen in *Figure 2*, the stability of the halo is better when less closely orbiting L2. For reference, a lower stability index signifies a more stable orbit. Only orbits with the largest out of plane $z$ components had stabilities sufficient for a space telescope with its limited $\Delta v$ budget.
+
 Finally, the following phase space plots (*Figure 3*) show comparisons between orbits propagated to include periodic stationkeeping maneuvers of the spacecraft and those without it. Clearly, some stationkeeping is necessary as numeric instabilities cause even well defined orbital states to diverge after around 18 months.
+
 
 <figure>
     <img src='results/haloorbitfamily.png' width='80%'>
