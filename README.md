@@ -64,7 +64,7 @@ $$
 \begin{bmatrix} \dot{x}_{T/2} \\ \dot{z}_{T/2} \end{bmatrix}
 $$
 
-The process requires relatively reasonable initial conditions, which is where analytical algorithms such as Breakwell & Brown (1979) are useful. Being such a highly nonlinear dynamical system, it's extremely sensitive to initial conditions making brute force techniques unfeasible.
+The process requires relatively reasonable initial conditions, which is where analytical algorithms for approximate solutions are useful. Being such a highly nonlinear dynamical system, it's extremely sensitive to initial conditions making brute force techniques unfeasible.
 
 ### Stability Analysis
 
@@ -89,14 +89,12 @@ For a periodic orbit, there's a pair of eigenvalues both equal to 1 correspondin
 
 As seen in *Figure 2*, the stability of the halo is better when less closely orbiting L2. For reference, a lower stability index signifies a more stable orbit. Only orbits with the largest out of plane $z$ components had stabilities sufficient for a space telescope with its limited $\Delta v$ budget.
 
-Finally, the following phase space plots (*Figure 3*) show comparisons between orbits propagated to include periodic stationkeeping maneuvers of the spacecraft and those without it. Clearly, some stationkeeping is necessary as numeric instabilities cause even well defined orbital states to diverge after around 18 months.
-
-
 <figure>
     <img src='results/haloorbitfamily.png' width='80%'>
     <figcaption>Figure 2: Family or periodic halo orbits found using differential correcion and their associated stabilities.</figcaption>
 </figure>
 
+Finally, the following phase space plots (*Figure 3*) show comparisons between orbits propagated to include periodic stationkeeping maneuvers of the spacecraft and those without it. Clearly, some stationkeeping is necessary as numeric instabilities cause even well defined orbital states to diverge after around 18 months.
 
 <figure>
     <img src='results/phasespaceplots.png' width='100%'>
